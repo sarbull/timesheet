@@ -28,7 +28,7 @@
 			<ul>
 				@foreach ($task->timestampss as $timestamp)
 					<li>
-						{{ $timestamp->start_date() }}: {{ $timestamp->total_spent() }}
+						<b>{{ $timestamp->start_date() }}</b>: {{ $timestamp->total_spent() }}
 						@if(empty($timestamp->end))
 							{{
 								HTML::linkRoute(

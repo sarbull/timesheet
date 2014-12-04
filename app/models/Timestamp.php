@@ -10,11 +10,11 @@ class Timestamp extends \Eloquent {
 	}
 
 	public function start_date() {
-		return date("d/m/y h:i:s", strtotime($this->start));
+		return date("d-m-y H:i", strtotime($this->start));
 	}
 
 	public function end_date() {
-		return date("d/m/y g:i A", strtotime($this->end));
+		return date("d-m-y H:i", strtotime($this->end));
 	}
 
 	public function total_spent() {
