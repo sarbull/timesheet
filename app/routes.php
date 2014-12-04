@@ -24,23 +24,28 @@ Route::get('logout', [
 	'uses' => 'UsersController@logout'
 ]);
 
-
 Route::resource('user', 'UsersController');
-Route::resource('projects', 'ProjectsController');
-Route::resource('tasks', 'TasksController', ['except' => ['index', 'create']]);
 
-Route::get('project/{project_id}/tasks', [
-	'as'   => 'tasks.index',
-	'uses' => 'TasksController@index'
-]);
+Route::group(array('before' => 'auth'), function()
+{
+	Route::resource('projects', 'ProjectsController');
+	Route::resource('tasks', 'TasksController', ['except' => ['index', 'create']]);
 
-Route::get('project/{project_id}/tasks/create', [
-	'as'   => 'tasks.create',
-	'uses' => 'TasksController@create'
-]);
+	Route::get('project/{project_id}/tasks', [
+		'as'   => 'tasks.index',
+		'uses' => 'TasksController@index'
+	]);
 
-Route::resource('timestamps', 'TimestampsController');
-Route::get('/timestamp/{timestamp_id}/end', [
-	'as'   => 'timestamps.end',
-	'uses' => 'TimestampsController@end'
-]);
+	Route::get('project/{project_id}/tasks/create', [
+		'as'   => 'tasks.create',
+		'uses' => 'TasksController@create'
+	]);
+
+	Route::resource('timestamps', 'TimestampsController');
+	Route::get('/timestamp/{timestamp_id}/end', [
+		'as'   => 'timestamps.end',
+		'uses' => 'TimestampsController@end'
+	]);
+});
+
+
