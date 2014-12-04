@@ -9,6 +9,7 @@ time tracking app
 ```bash
 $ php artisan migrate:install
 $ php artisan migrate
+$ composer update --dev
 $ php artisan serve
 ```
 and you are good to go. [http://localhost:8000](http://localhost:8000)
