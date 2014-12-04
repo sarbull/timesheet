@@ -3,7 +3,7 @@
 class ProjectsController extends \BaseController {
 
 	public function index() {
-		$projects = Project::all();
+		$projects = Auth::user()->projects;
 		return View::make('projects.index', ['projects' => $projects]);
 	}
 

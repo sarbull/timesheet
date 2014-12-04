@@ -12,6 +12,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $fillable = ['email', 'password'];
 
 	public function projects() {
-		return $this->hasMany('Projects');
+		return $this->hasMany('Project', 'user_id');
 	}
 }
