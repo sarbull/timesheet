@@ -12,11 +12,15 @@ class Ticket extends Model {
   ];
 
   public function project() {
-    return $this->belongs_to('App\Project');
+    return $this->belongsTo('App\Project');
   }
 
   public function status() {
-    return $this->belongs_to('App\Status');
+    return $this->belongsTo('App\Status');
+  }
+
+  public function times() {
+    return $this->hasMany('App\Time');
   }
 
 }
