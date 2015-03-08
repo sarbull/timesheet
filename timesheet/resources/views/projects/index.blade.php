@@ -4,6 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+      <h3>Projects</h3>
       @if($projects->count())
         <table class="table table-striped table-bordered">
           <tr>
@@ -21,6 +22,8 @@
             </tr>
           @endforeach
         </table>
+      @else
+        <p>No projects found.</p>
       @endif
     </div>
   </div>
