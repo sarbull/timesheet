@@ -5,7 +5,7 @@ time tracking app
 
 
 ### Installation
-- create a database called timesheet, add a user and a password, update the config file in app/config/local/database.php or app/config/database.php
+- create a .env file from .env.sample, update .env variables with your own and:
 ```bash
 $ php artisan migrate:install
 $ php artisan migrate
