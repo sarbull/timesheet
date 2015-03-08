@@ -19,7 +19,7 @@
         </tr>
         <tr>
           <th>Ref ID</th>
-          <td><a href="{{ $ticket->url }}">#{{$ticket->ref_id}}</a></td>
+          <td><a href="{{ $ticket->url }}" target="_blank">#{{$ticket->ref_id}}</a></td>
         </tr>
         <tr>
           <th>Status</th>
