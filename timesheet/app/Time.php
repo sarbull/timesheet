@@ -17,9 +17,7 @@ class Time extends Model {
     $created_at = new \DateTime($this->created_at);
     $updated_at = new \DateTime($this->updated_at);
     $interval = $updated_at->diff($created_at);
-
-    // %y years %m months %a day %h hours %i minutes %S seconds
-    return $interval->format('%h hours %i minutes %s seconds');
+    return $interval;
   }
 
   public function getCreatedAttAttribute() {

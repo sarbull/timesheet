@@ -9,12 +9,14 @@
           <tr>
             <th>Name</th>
             <th>Company</th>
+            <th>Hours spent</th>
             <th></th>
           </tr>
           @foreach($projects as $project)
             <tr>
               <td>{{$project->name}}</td>
               <td>{{$project->company->name}}</td>
+              <td>{{$project->hours_spent->format('%h hours %i minutes %s seconds')}}</td>
               <td><a href="{{ route('projects.show', ['id' => $project->id]) }}">Details</a></td>
             </tr>
           @endforeach

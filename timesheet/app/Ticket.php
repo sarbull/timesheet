@@ -11,7 +11,7 @@ class Ticket extends Model {
     'status_id'
   ];
 
-  protected $appends = ['has_time_started'];
+  protected $appends = ['has_time_started', 'hours_spent'];
 
   public function project() {
     return $this->belongsTo('App\Project');
@@ -22,7 +22,16 @@ class Ticket extends Model {
   }
 
   public function times() {
-    return $this->hasMany('App\Time');
+    return $this->hasMany('App\Time')->orderBy('created_at', 'desc');
+  }
+
+  public function getHoursSpentAttribute() {
+    $duration = new \DateTime('00:00');
+    $f        = clone $duration;
+    foreach ($this->times as $time) {
+      $duration->add($time->duration);
+    }
+    return $f->diff($duration);
   }
 
   public function getHasTimeStartedAttribute() {

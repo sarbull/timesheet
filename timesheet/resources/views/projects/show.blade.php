@@ -26,6 +26,7 @@
             <th>Title</th>
             <th>Ref ID</th>
             <th>Status</th>
+            <th>Hours spent</th>
             <th></th>
           </tr>
           @foreach($project->tickets as $ticket)
@@ -33,6 +34,7 @@
               <td>{{$ticket->title}}</td>
               <td>{{$ticket->ref_id}}</td>
               <td>{{$ticket->status->name}}</td>
+              <td>{{$ticket->hours_spent->format('%h hours %i minutes %s seconds')}}</td>
               <td><a href="{{ route('tickets.show', ['id' => $ticket->id]) }}">Details</a></td>
             </tr>
           @endforeach

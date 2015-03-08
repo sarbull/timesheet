@@ -18,6 +18,10 @@
           <th>Project</th>
           <td>{{$ticket->project->name}}</td>
         </tr>
+        <tr>
+          <th>Hours spent</th>
+          <td>{{$ticket->hours_spent->format('%h hours %i minutes %s seconds')}}</td>
+        </tr>
       </table>
       <h3>
         Times
@@ -37,7 +41,7 @@
           </tr>
           @foreach($ticket->times as $time)
             <tr>
-              <td>{{ $time->duration }}</td>
+              <td>{{ $time->duration->format('%h hours %i minutes %s seconds') }}</td>
               <td>{{ $time->created_at }}</td>
               @if($time->stopped)
                 <td>Stopped</td>
