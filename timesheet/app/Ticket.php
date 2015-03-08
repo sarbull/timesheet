@@ -11,7 +11,7 @@ class Ticket extends Model {
     'status_id'
   ];
 
-  protected $appends = ['has_time_started', 'hours_spent'];
+  protected $appends = ['has_time_started', 'hours_spent', 'time_since'];
 
   public function project() {
     return $this->belongsTo('App\Project');

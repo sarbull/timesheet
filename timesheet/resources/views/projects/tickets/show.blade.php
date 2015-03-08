@@ -22,6 +22,10 @@
           <th>Hours spent</th>
           <td>{{$ticket->hours_spent->format('%h hours %i minutes %s seconds')}}</td>
         </tr>
+        <tr>
+          <th>Created at</th>
+          <td>{{$ticket->created_at }}</td>
+        </tr>
       </table>
       <h3>
         Times
@@ -30,6 +34,7 @@
             <a href="{{ route('projects.tickets.times.start', ['id' => $ticket->id])}}">
               Start
             </a>
+          </span>
         @endif
       </h3>
       @if($ticket->times->count())

@@ -19,6 +19,10 @@
 	<![endif]-->
 </head>
 <body>
+
+<div class="container">
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -62,6 +66,9 @@
 			</div>
 		</div>
 	</nav>
+</div>
+</div>
+</div>
 
 	@yield('content')
 

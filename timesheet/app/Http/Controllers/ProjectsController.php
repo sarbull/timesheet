@@ -12,24 +12,20 @@ class ProjectsController extends Controller {
 		return view('projects.index', ['projects' => $projects]);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+	public function create() {
+		$project   = new \App\Project;
+		$companies = \Auth::user()->companies;
+		return view('projects.create', [
+			'project' => $project,
+			'companies' => $companies
+		]);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
+	public function store() {
+		$input = \Input::all();
+		$input['project']['user_id'] = \Auth::user()->id;
+		$project = \App\Project::create($input['project']);
+		return view('projects.show', ['project' => $project]);
 	}
 
 	public function show($id) {
@@ -37,36 +33,23 @@ class ProjectsController extends Controller {
 		return view('projects.show', ['project' => $project]);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
+	public function edit($id) {
+		$project = \App\Project::find($id);
+		$companies = \Auth::user()->companies;
+		return view('projects.edit', [
+			'project' => $project,
+			'companies' => $companies
+		]);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+	public function update($id) {
+		$input = \Input::all();
+		$project = \App\Project::find($id);
+		$project->update($input['project']);
+		return view('projects.show', ['project' => $project]);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
+	public function destroy($id) {
 		//
 	}
 
