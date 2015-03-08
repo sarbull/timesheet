@@ -7,7 +7,7 @@ class Time extends Model {
     'ticket_id'
   ];
 
-  protected $appends = ['duration', 'created_att', 'stopped'];
+  protected $appends = ['duration', 'created_att', 'stopped', 'seconds'];
 
   public function ticket() {
     return $this->belongsTo('App\Ticket');
@@ -33,6 +33,13 @@ class Time extends Model {
     } else {
       return true;
     }
+  }
+
+  public function getSecondsAttribute() {
+    $created_at = new \DateTime($this->created_at);
+    $updated_at = new \DateTime($this->updated_at);
+
+    return $updated_at->getTimestamp() - $created_at->getTimestamp();
   }
 
 }
