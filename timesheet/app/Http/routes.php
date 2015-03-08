@@ -15,6 +15,17 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 Route::resource('projects', 'ProjectsController');
+Route::resource('tickets', 'TicketsController');
+
+Route::get('projects/tickets/times/{id}/stop', [
+    'as' => 'projects.tickets.times.stop', 
+    'uses' => 'TimesController@stop'
+]);
+
+Route::get('projects/tickets/{id}/times/start', [
+    'as' => 'projects.tickets.times.start', 
+    'uses' => 'TimesController@start'
+]);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

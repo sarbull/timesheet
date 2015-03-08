@@ -11,6 +11,8 @@ class Ticket extends Model {
     'status_id'
   ];
 
+  protected $appends = ['has_time_started'];
+
   public function project() {
     return $this->belongsTo('App\Project');
   }
@@ -21,6 +23,21 @@ class Ticket extends Model {
 
   public function times() {
     return $this->hasMany('App\Time');
+  }
+
+  public function getHasTimeStartedAttribute() {
+    $times_size = $this->times->count();
+    $stopped_count = 0;
+    foreach ($this->times as $time) {
+      if($time->stopped) {
+        $stopped_count++;
+      }
+    }
+    if($times_size == $stopped_count) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

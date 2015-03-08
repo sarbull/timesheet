@@ -5,11 +5,16 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ProjectsController extends Controller {
+class TicketsController extends Controller {
 
-	public function index() {
-		$projects = \Auth::user()->projects;
-		return view('projects.index', ['projects' => $projects]);
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		//
 	}
 
 	/**
@@ -33,8 +38,8 @@ class ProjectsController extends Controller {
 	}
 
 	public function show($id) {
-		$project = \App\Project::find($id);
-		return view('projects.show', ['project' => $project]);
+		$ticket = \App\Ticket::find($id);
+		return view('projects.tickets.show', ['ticket' => $ticket]);
 	}
 
 	/**
