@@ -3,7 +3,7 @@
 		<title>Laravel</title>
 		
 		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
-
+		<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 		<style>
 			body {
 				margin: 0;
@@ -40,8 +40,12 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Laravel 5</div>
-				<div class="quote">{{ Inspiring::quote() }}</div>
+				<div class="title">Timesheet</div>
+				<div class="quote">
+					Simple time tracker application using Laravel 5. <br>
+					Create a new account <a href="{{ url('/auth/register') }}">here</a> or 
+					<a href="{{ url('/auth/login') }}">login</a>.
+				</div>
 			</div>
 		</div>
 	</body>
