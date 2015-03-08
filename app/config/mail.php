@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => ['address' => "sirbunicolaecezar@gmail.com", 'name' => "time.sarbull.ro"],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
 	|
 	*/
 
-	'sendmail' => '/usr/sbin/sendmail -bs',
+	'sendmail' => '/usr/sbin/sendmail',
 
 	/*
 	|--------------------------------------------------------------------------
