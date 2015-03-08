@@ -14,9 +14,11 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+
 Route::resource('companies', 'CompaniesController');
 Route::resource('projects', 'ProjectsController');
-Route::resource('tickets', 'TicketsController');
+Route::resource('projects.tickets', 'TicketsController');
+
 
 Route::get('projects/tickets/times/{id}/stop', [
     'as' => 'projects.tickets.times.stop', 

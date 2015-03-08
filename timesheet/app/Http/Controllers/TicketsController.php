@@ -7,72 +7,52 @@ use Illuminate\Http\Request;
 
 class TicketsController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
+	public function index(){
+
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+	public function create($project_id) {
+		$ticket   = new \App\Ticket;
+		return view('projects.tickets.create', [
+			'ticket' => $ticket,
+			'project' => \App\Project::find($project_id),
+			'statuses' => \App\Status::all()
+		]);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	public function show($id) {
-		$ticket = \App\Ticket::find($id);
+	public function store($project_id) {
+		$input = \Input::all();
+		$input['ticket']['project_id'] = $project_id;
+		$ticket = \App\Ticket::create($input['ticket']);
 		return view('projects.tickets.show', ['ticket' => $ticket]);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
+	public function show($project_id, $ticket_id) {
+		$ticket = \App\Ticket::find($ticket_id);
+		return view('projects.tickets.show', ['ticket' => $ticket]);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+	public function edit($project_id, $ticket_id) {
+		$ticket = \App\Ticket::find($ticket_id);
+		return view('projects.tickets.edit', [
+			'ticket' => $ticket,
+			'project' => $ticket->project,
+			'statuses' => \App\Status::all()
+		]);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+	public function update($project_id, $ticket_id) {
+		$input = \Input::all();
+		$ticket = \App\Ticket::find($ticket_id);
+		$ticket->update($input['ticket']);
+		return view('projects.tickets.show', [
+			'ticket' => $ticket,
+			'project' => $ticket->project
+		]);
+	}
+
+	public function destroy($id) {
+
 	}
 
 }

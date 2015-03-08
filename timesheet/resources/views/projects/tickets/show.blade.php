@@ -4,7 +4,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <h3>{{$ticket->title}}</h3>
+      <h3>
+        {{$ticket->title}}
+        <span class="pull-right">
+          <a href="{{ route('projects.tickets.edit', ['project_id' => $ticket->project->id, 'ticket_id' => $ticket->id])}}">
+            Edit
+          </a>
+        </span>
+      </h3>
       <table class="table table-striped table-bordered">
         <tr>
           <th>Title</th>
@@ -16,7 +23,7 @@
         </tr>
         <tr>
           <th>Project</th>
-          <td>{{$ticket->project->name}}</td>
+          <td><a href="{{ route('projects.show', ['id' => $ticket->project->id])}}">{{$ticket->project->name}}</a></td>
         </tr>
         <tr>
           <th>Hours spent</th>

@@ -30,7 +30,14 @@
           <td>{{$project->hours_spent->format('%y years %m months %d days %h hours %i minutes %s seconds')}}</td>
         </tr>
       </table>
-      <h3>Tickets</h3>
+      <h3>
+        Tickets
+        <span class="pull-right">
+          <a href="{{ route('projects.tickets.create', ['project_id' => $project->id])}}">
+            Add a new ticket
+          </a>
+        </span>
+      </h3>
       @if($project->tickets->count())
         <table class="table table-striped table-bordered">
           <tr>
@@ -48,7 +55,7 @@
               <td>{{$ticket->status->name}}</td>
               <td>{{$ticket->hours_spent->format('%h hours %i minutes %s seconds')}}</td>
               <td>{{$ticket->created_at->diffForHumans() }}</td>
-              <td><a href="{{ route('tickets.show', ['id' => $ticket->id]) }}">Details</a></td>
+              <td><a href="{{ route('projects.tickets.show', ['ticket_id' => $ticket->id, 'project_id' => $project->id]) }}">Details</a></td>
             </tr>
           @endforeach
         </table>
