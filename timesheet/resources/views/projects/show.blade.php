@@ -22,6 +22,22 @@
           <td>{{$project->company->name}}</td>
         </tr>
         <tr>
+          <th>Production URL</th>
+          <td>{{$project->production_url}}</td>
+        </tr>
+        <tr>
+          <th>Development URL</th>
+          <td>{{$project->development_url}}</td>
+        </tr>
+        <tr>
+          <th>Test URL</th>
+          <td>{{$project->test_url}}</td>
+        </tr>
+        <tr>
+          <th>Description</th>
+          <td>{{$project->description}}</td>
+        </tr>
+        <tr>
           <th>Total tickets</th>
           <td>{{$project->tickets->count()}}</td>
         </tr>
@@ -55,7 +71,7 @@
               <td>{{$ticket->status->name}}</td>
               <td>{{$ticket->hours_spent->format('%h hours %i minutes %s seconds')}}</td>
               <td>{{$ticket->created_at->diffForHumans() }}</td>
-              <td><a href="{{ route('projects.tickets.show', ['ticket_id' => $ticket->id, 'project_id' => $project->id]) }}">Details</a></td>
+              <td><a href="{{ route('projects.tickets.show', ['project_id' => $project->id, 'ticket_id' => $ticket->id]) }}">Details</a></td>
             </tr>
           @endforeach
         </table>

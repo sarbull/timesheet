@@ -25,7 +25,7 @@ class ProjectsController extends Controller {
 		$input = \Input::all();
 		$input['project']['user_id'] = \Auth::user()->id;
 		$project = \App\Project::create($input['project']);
-		return view('projects.show', ['project' => $project]);
+		return \Redirect::route('projects.show', ['project' => $project]);
 	}
 
 	public function show($id) {
@@ -46,7 +46,7 @@ class ProjectsController extends Controller {
 		$input = \Input::all();
 		$project = \App\Project::find($id);
 		$project->update($input['project']);
-		return view('projects.show', ['project' => $project]);
+		return \Redirect::route('projects.show', ['project' => $project]);
 	}
 
 	public function destroy($id) {

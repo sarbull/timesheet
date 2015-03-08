@@ -24,12 +24,18 @@ class TicketsController extends Controller {
 		$input = \Input::all();
 		$input['ticket']['project_id'] = $project_id;
 		$ticket = \App\Ticket::create($input['ticket']);
-		return view('projects.tickets.show', ['ticket' => $ticket]);
+		return \Redirect::route('projects.tickets.show', [
+			'project_id' => $project_id,
+			'ticket_id'  => $ticket->id
+		]);
 	}
 
 	public function show($project_id, $ticket_id) {
 		$ticket = \App\Ticket::find($ticket_id);
-		return view('projects.tickets.show', ['ticket' => $ticket]);
+		return view('projects.tickets.show', [
+			'ticket' => $ticket,
+			'project' => $ticket->project
+		]);
 	}
 
 	public function edit($project_id, $ticket_id) {
@@ -45,9 +51,9 @@ class TicketsController extends Controller {
 		$input = \Input::all();
 		$ticket = \App\Ticket::find($ticket_id);
 		$ticket->update($input['ticket']);
-		return view('projects.tickets.show', [
-			'ticket' => $ticket,
-			'project' => $ticket->project
+		return \Redirect::route('projects.tickets.show', [
+			'project_id' => $project_id,
+			'ticket_id' => $ticket_id
 		]);
 	}
 

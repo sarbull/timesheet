@@ -23,7 +23,7 @@ class CompaniesController extends Controller {
 		$input = \Input::all();
 		$input['company']['user_id'] = \Auth::user()->id;
 		$company = \App\Company::create($input['company']);
-		return view('companies.show', ['company' => $company]);
+		return \Redirect::route('companies.show', ['company' => $company]);
 	}
 
 	public function show($id) {
@@ -42,7 +42,7 @@ class CompaniesController extends Controller {
 		$input = \Input::all();
 		$company = \App\Company::find($id);
 		$company->update($input['company']);
-		return view('companies.show', ['company' => $company]);
+		return \Redirect::route('companies.show', ['company' => $company]);
 	}
 
 	public function destroy($id){
