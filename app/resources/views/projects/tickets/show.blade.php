@@ -18,6 +18,10 @@
           <td>{{$ticket->title}}</td>
         </tr>
         <tr>
+          <th>Ref ID</th>
+          <td><a href="{{ $ticket->url }}">#{{$ticket->ref_id}}</a></td>
+        </tr>
+        <tr>
           <th>Status</th>
           <td>{{$ticket->status->name}}</td>
         </tr>

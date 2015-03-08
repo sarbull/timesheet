@@ -23,15 +23,15 @@
         </tr>
         <tr>
           <th>Production URL</th>
-          <td>{{$project->production_url}}</td>
+          <td><a href="{{$project->production_url}}" target="_blank">{{$project->production_url}}</a></td>
         </tr>
         <tr>
           <th>Development URL</th>
-          <td>{{$project->development_url}}</td>
+          <td><a href="{{$project->development_url}}" target="_blank">{{$project->development_url}}</a></td>
         </tr>
         <tr>
           <th>Test URL</th>
-          <td>{{$project->test_url}}</td>
+          <td><a href="{{$project->test_url}}" target="_blank">{{$project->test_url}}</a></td>
         </tr>
         <tr>
           <th>Description</th>
