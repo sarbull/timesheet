@@ -14,12 +14,7 @@ $ php artisan serve
 ```
 and you are good to go. [http://localhost:8000](http://localhost:8000)
 
-### This was written in Laravel Framework version 4.2.11
-
-### Demo
-
-[![Demo video](http://img.youtube.com/vi/YJRyzmc6l-Y/0.jpg)](http://www.youtube.com/watch?v=YJRyzmc6l-Y)
-
+### This was written in Laravel Framework version 5
 
 ### Credits
 Sirbu Nicolae-Cezar
