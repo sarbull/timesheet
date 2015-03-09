@@ -8,15 +8,13 @@ use Illuminate\Http\Request;
 class TimesController extends Controller {
 
 	public function start($ticket_id) {
-		foreach (\Auth::user()->projects as $project) {
-			foreach ($project->tickets as $ticket) {
-				foreach ($ticket->times as $time) {
-					if($time->created_at == $time->updated_at) {
-						return \Redirect::route('projects.tickets.show', [
-							'project_id' => $project->id,
-							'ticket_id' => $ticket->id
-						]);
-					}
+		foreach (\Auth::user()->tickets as $ticket) {
+			foreach ($ticket->times as $time) {
+				if($time->created_at == $time->updated_at) {
+					return \Redirect::route('projects.tickets.show', [
+						'project_id' => $project->id,
+						'ticket_id' => $ticket->id
+					]);
 				}
 			}
 		}
