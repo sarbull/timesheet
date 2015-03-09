@@ -22,6 +22,13 @@ class CompaniesController extends Controller {
 	public function store() {
 		$input = \Input::all();
 		$input['company']['user_id'] = \Auth::user()->id;
+		$v = \Validator::make($input['company'], \App\Company::$createRules);
+
+		if ($v->fails()) {
+			return \Redirect::route('companies.create')
+				->withErrors($v->errors())->withInput();
+		}
+
 		$company = \App\Company::create($input['company']);
 		return \Redirect::route('companies.show', ['company' => $company]);
 	}
@@ -40,6 +47,14 @@ class CompaniesController extends Controller {
 
 	public function update($id) {
 		$input = \Input::all();
+		$v = \Validator::make($input['company'], \App\Company::$updateRules);
+
+		if ($v->fails()) {
+			return \Redirect::route('companies.edit', [
+				'id' => $id
+			])->withErrors($v->errors())->withInput();
+		}
+
 		$company = \App\Company::find($id);
 		$company->update($input['company']);
 		return \Redirect::route('companies.show', ['company' => $company]);
