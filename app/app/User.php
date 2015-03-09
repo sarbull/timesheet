@@ -14,6 +14,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	protected $fillable = ['name', 'email', 'password'];
 
+	protected $appends = ['working_on'];
+
 	protected $hidden = ['password', 'remember_token'];
 
 	public function projects() {
@@ -21,10 +23,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 
 	public function tickets() {
-		return $this->hasMany('App\Ticket', 'Project');
+		return $this->hasManyThrough('App\Ticket', 'App\Project');
 	}
 
 	public function companies() {
 		return $this->hasMany('App\Company');
+	}
+
+	public function getWorkingOnAttribute() {
+		foreach ($this->tickets as $ticket) {
+			foreach ($ticket->times as $time) {
+				if(!$time->stopped){
+					return $time->ticket;
+				}
+			}
+		}
+		return false;
 	}
 }
