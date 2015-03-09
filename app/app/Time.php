@@ -4,10 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Time extends Model {
   protected $fillable = [
-    'ticket_id'
+    'ticket_id',
   ];
 
-  protected $appends = ['duration', 'created_att', 'stopped', 'seconds'];
+  protected $appends = ['duration', 'created_att', 'stopped', 'seconds', 'hour'];
 
   public function ticket() {
     return $this->belongsTo('App\Ticket');
@@ -22,7 +22,7 @@ class Time extends Model {
 
   public function getCreatedAttAttribute() {
     $created_at = new \DateTime($this->created_at);
-    return $created_at->format('M d, Y - h:i:sA');
+    return $created_at;
   }
 
   public function getStoppedAttribute() {
@@ -33,6 +33,10 @@ class Time extends Model {
     } else {
       return true;
     }
+  }
+
+  public function getHourAttribute() {
+    return sprintf('%0.2f', $this->seconds/3600);
   }
 
   public function getSecondsAttribute() {

@@ -14,7 +14,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	protected $fillable = ['name', 'email', 'password'];
 
-	protected $appends = ['working_on'];
+	protected $appends = ['working_on', 'times'];
 
 	protected $hidden = ['password', 'remember_token'];
 
@@ -24,6 +24,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function tickets() {
 		return $this->hasManyThrough('App\Ticket', 'App\Project');
+	}
+
+	public function getTimesAttribute() {
+		$times = \Illuminate\Database\Eloquent\Collection::make();
+		foreach ($this->tickets as $ticket) {
+			$times->push($ticket->times);
+		}
+		return $times;
 	}
 
 	public function companies() {

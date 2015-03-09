@@ -10,6 +10,10 @@ Route::group(['middleware' => 'auth'], function() {
   Route::resource('projects', 'ProjectsController');
   Route::resource('projects.tickets', 'TicketsController');
 
+  Route::get('dashboard', 'DashboardController@index');
+
+
+
   Route::get('projects/tickets/times/{id}/stop', [
       'as' => 'projects.tickets.times.stop', 
       'uses' => 'TimesController@stop'
@@ -29,3 +33,7 @@ Route::controllers([
 // Event::listen('illuminate.query', function($sql) {
 //   var_dump($sql);
 // }); 
+
+Blade::extend(function($value) {
+    return preg_replace('/\{\?(.+)\?\}/', '<?php ${1} ?>', $value);
+});

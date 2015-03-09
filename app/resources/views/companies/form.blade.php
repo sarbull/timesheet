@@ -15,7 +15,7 @@
 @if(Route::currentRouteName() == "companies.create")
   <div class="form-group">
     <div class="col-md-6 col-md-offset-4">
-      <a class="btn btn-danger" href="{{ url('/projects') }}">Cancel</a>
+      <a class="btn btn-danger" href="{{ url('/companies') }}">Cancel</a>
       <button type="submit" class="btn btn-success">Create</button>
     </div>
   </div>
