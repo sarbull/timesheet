@@ -3,8 +3,9 @@
 @section('content')
 <style>
   #calendar tr td div {
-    min-height: 100px;
-    min-width:100px;
+    min-height: 90px;
+    max-width:100px;
+    min-width:80px;
   }
 </style>
 <div class="container">
