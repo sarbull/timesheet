@@ -10,9 +10,10 @@ Route::group(['middleware' => 'auth'], function() {
   Route::resource('projects', 'ProjectsController');
   Route::resource('projects.tickets', 'TicketsController');
 
-  Route::get('dashboard', 'DashboardController@index');
-
-
+  Route::get('dashboard', [
+     'as'    => 'dashboard.index', 
+      'uses' => 'DashboardController@index'
+  ]);
 
   Route::get('projects/tickets/times/{id}/stop', [
       'as' => 'projects.tickets.times.stop', 
