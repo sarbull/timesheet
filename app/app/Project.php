@@ -6,6 +6,7 @@ class Project extends Model {
   protected $fillable = [
     'name',
     'logo',
+    'repo_url',
     'description',
     'production_url',
     'development_url',

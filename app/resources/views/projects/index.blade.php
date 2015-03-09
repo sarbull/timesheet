@@ -15,7 +15,11 @@
           </tr>
           @foreach($projects as $project)
             <tr>
-              <td>{{$project->name}}</td>
+              @if($project->repo_url)
+                <td><a href="{{ $project->repo_url }}" target="_blank">{{$project->name}}</a></td>
+              @else
+                <td>{{$project->name}}</td>
+              @endif
               <td>{{$project->company->name}}</td>
               <td>{{$project->hours_spent->format('%h hours %i minutes %s seconds')}}</td>
               <td><a href="{{ route('projects.show', ['id' => $project->id]) }}">Details</a></td>

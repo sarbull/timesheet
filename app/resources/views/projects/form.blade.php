@@ -13,6 +13,13 @@
 </div>
 
 <div class="form-group">
+  {!! Form::label('project[repo_url]', 'Repo URL', ['class' => 'col-md-4 control-label']) !!}
+  <div class="col-md-6">
+    {!! Form::text('project[repo_url]', $project->repo_url, ['class' => 'form-control']) !!}
+  </div>
+</div>
+
+<div class="form-group">
   {!! Form::label('project[description]', 'Description', ['class' => 'col-md-4 control-label']) !!}
   <div class="col-md-6">
     {!! Form::textarea('project[description]', $project->description, ['class' => 'form-control']) !!}

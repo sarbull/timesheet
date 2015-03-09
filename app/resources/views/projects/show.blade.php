@@ -18,6 +18,10 @@
           <td>{{$project->name}}</td>
         </tr>
         <tr>
+          <th>Repo URL</th>
+          <td><a href="{{ $project->repo_url }}" target="_blank">{{$project->repo_url}}</a></td>
+        </tr>
+        <tr>
           <th>Company</th>
           <td>{{$project->company->name}}</td>
         </tr>
