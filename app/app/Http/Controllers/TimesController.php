@@ -12,7 +12,7 @@ class TimesController extends Controller {
 			foreach ($ticket->times as $time) {
 				if($time->created_at == $time->updated_at) {
 					return \Redirect::route('projects.tickets.show', [
-						'project_id' => $project->id,
+						'project_id' => $ticket->project->id,
 						'ticket_id' => $ticket->id
 					]);
 				}
