@@ -27,11 +27,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 
 	public function getTimesAttribute() {
-		$times = \Illuminate\Database\Eloquent\Collection::make();
+		$result = \Illuminate\Database\Eloquent\Collection::make();
 		foreach ($this->tickets as $ticket) {
-			$times->push($ticket->times);
+			foreach ($ticket->times as $time) {
+				$result->push($time);
+			}
 		}
-		return $times;
+		return $result;
 	}
 
 	public function companies() {

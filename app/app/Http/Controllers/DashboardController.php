@@ -9,7 +9,7 @@ class DashboardController extends Controller {
 
 	public function index() {
 		$user    = \Auth::user();
-		$times   = $user->times->first();
+		$times   = $user->times;
 		$today   = new \Datetime("today");
 		$factory = new \CalendR\Calendar;
 		$month = $factory->getMonth(2015, 03);
