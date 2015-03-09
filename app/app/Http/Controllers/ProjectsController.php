@@ -39,16 +39,24 @@ class ProjectsController extends Controller {
 
 	public function show($id) {
 		$project = \App\Project::find($id);
-		return view('projects.show', ['project' => $project]);
+		if($project->user_id == \Auth::user()->id){
+			return view('projects.show', ['project' => $project]);
+		} else {
+			return \Redirect::route('projects.index')->with('danger', 'Permission denied.');
+		}
 	}
 
 	public function edit($id) {
 		$project = \App\Project::find($id);
+		if($project->user_id == \Auth::user()->id){
 		$companies = \Auth::user()->companies;
-		return view('projects.edit', [
-			'project' => $project,
-			'companies' => $companies
-		]);
+			return view('projects.edit', [
+				'project' => $project,
+				'companies' => $companies
+			]);
+		} else {
+			return \Redirect::route('projects.index')->with('danger', 'Permission denied.');
+		}
 	}
 
 	public function update($id) {

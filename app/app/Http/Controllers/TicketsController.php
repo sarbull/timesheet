@@ -40,19 +40,27 @@ class TicketsController extends Controller {
 
 	public function show($project_id, $ticket_id) {
 		$ticket = \App\Ticket::find($ticket_id);
-		return view('projects.tickets.show', [
-			'ticket' => $ticket,
-			'project' => $ticket->project
-		]);
+		if($ticket->project->user_id == \Auth::user()->id){
+			return view('projects.tickets.show', [
+				'ticket' => $ticket,
+				'project' => $ticket->project
+			]);
+		} else {
+			return \Redirect::route('projects.index')->with('danger', 'Permission denied.');
+		}
 	}
 
 	public function edit($project_id, $ticket_id) {
 		$ticket = \App\Ticket::find($ticket_id);
-		return view('projects.tickets.edit', [
-			'ticket' => $ticket,
-			'project' => $ticket->project,
-			'statuses' => \App\Status::all()
-		]);
+		if($ticket->project->user_id == \Auth::user()->id){
+			return view('projects.tickets.edit', [
+				'ticket' => $ticket,
+				'project' => $ticket->project,
+				'statuses' => \App\Status::all()
+			]);
+		} else {
+			return \Redirect::route('projects.index')->with('danger', 'Permission denied.');
+		}
 	}
 
 	public function update($project_id, $ticket_id) {
