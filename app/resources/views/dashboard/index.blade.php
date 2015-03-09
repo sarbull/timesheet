@@ -38,7 +38,7 @@
                   @foreach($times as $time)
                     @if($time->created_at->format('Y-m-d') == $day->format('Y-m-d'))
                       <br>
-                      <a href="{{route('projects.tickets.show', ['project_id' => $time->ticket->project->id, 'ticket_id' => $time->ticket->id])}}">Time</a>
+                      <a href="{{route('projects.tickets.show', ['project_id' => $time->ticket->project->id, 'ticket_id' => $time->ticket->id])}}">#{{ $time->ticket->ref_id }}</a>
                       {{ $time->hour }}h
                     @endif
                   @endforeach
