@@ -11,6 +11,21 @@ class Ticket extends Model {
     'status_id'
   ];
 
+  public static $createRules = [
+    'ref_id'     => ['required', 'integer'],
+    'url'        => [],
+    'title'      => ['required'],
+    'project_id' => ['required', 'exists:projects,id'],
+    'status_id'  => ['required', 'exists:statuses,id']
+  ];
+
+  public static $updateRules = [
+    'ref_id'     => ['required', 'integer'],
+    'url'        => [],
+    'title'      => ['required'],
+    'status_id'  => ['required', 'exists:statuses,id']
+  ];
+
   protected $appends = ['has_time_started', 'hours_spent', 'time_since'];
 
   public function project() {

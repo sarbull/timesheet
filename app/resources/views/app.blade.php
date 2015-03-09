@@ -22,6 +22,9 @@
 
 	@include('include.navbar')
 
+
+	@include('include.errors')
+
 	@yield('content')
 
 	<!-- Scripts -->

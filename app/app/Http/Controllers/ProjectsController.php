@@ -23,6 +23,15 @@ class ProjectsController extends Controller {
 
 	public function store() {
 		$input = \Input::all();
+		$v = \Validator::make($input['project'], \App\Project::$createRules);
+		$project   = new \App\Project;
+
+		if ($v->fails()) {
+			return \Redirect::route('projects.create', [
+				'project' => $project
+			])->withErrors($v->errors())->withInput();
+		}
+
 		$input['project']['user_id'] = \Auth::user()->id;
 		$project = \App\Project::create($input['project']);
 		return \Redirect::route('projects.show', ['project' => $project]);
@@ -43,8 +52,16 @@ class ProjectsController extends Controller {
 	}
 
 	public function update($id) {
-		$input = \Input::all();
+		$input   = \Input::all();
 		$project = \App\Project::find($id);
+		$v = \Validator::make($input['project'], \App\Project::$updateRules);
+
+		if ($v->fails()) {
+			return \Redirect::route('projects.edit', [
+				'project' => $project
+			])->withErrors($v->errors())->withInput();
+		}
+
 		$project->update($input['project']);
 		return \Redirect::route('projects.show', ['project' => $project]);
 	}

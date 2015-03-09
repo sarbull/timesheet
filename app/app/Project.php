@@ -15,6 +15,29 @@ class Project extends Model {
     'company_id'
   ];
 
+  public static $createRules = [
+    'name'            => ['required'],
+    'logo'            => [],
+    'repo_url'        => [],
+    'description'     => [],
+    'production_url'  => [],
+    'development_url' => [],
+    'test_url'        => [],
+    'user_id'         => ['exists:users,id'],
+    'company_id'      => ['required', 'exists:companies,id']
+  ];
+
+  public static $updateRules = [
+    'name'            => ['required'],
+    'logo'            => [],
+    'repo_url'        => [],
+    'description'     => [],
+    'production_url'  => [],
+    'development_url' => [],
+    'test_url'        => [],
+    'company_id'      => ['required', 'exists:companies,id']
+  ];
+
   protected $appends = ['hours_spent'];
 
   public function user() {

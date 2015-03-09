@@ -23,6 +23,14 @@ class TicketsController extends Controller {
 	public function store($project_id) {
 		$input = \Input::all();
 		$input['ticket']['project_id'] = $project_id;
+		$v = \Validator::make($input['ticket'], \App\Ticket::$createRules);
+
+		if ($v->fails()) {
+			return \Redirect::route('projects.tickets.create', [
+				'project_id' => $project_id
+			])->withErrors($v->errors())->withInput();
+		}
+
 		$ticket = \App\Ticket::create($input['ticket']);
 		return \Redirect::route('projects.tickets.show', [
 			'project_id' => $project_id,
@@ -49,6 +57,15 @@ class TicketsController extends Controller {
 
 	public function update($project_id, $ticket_id) {
 		$input = \Input::all();
+		$v = \Validator::make($input['ticket'], \App\Ticket::$updateRules);
+
+		if ($v->fails()) {
+			return \Redirect::route('projects.tickets.edit', [
+				'project_id' => $project_id,
+				'ticket_id'  => $ticket_id
+			])->withErrors($v->errors())->withInput();
+		}
+
 		$ticket = \App\Ticket::find($ticket_id);
 		$ticket->update($input['ticket']);
 		return \Redirect::route('projects.tickets.show', [
