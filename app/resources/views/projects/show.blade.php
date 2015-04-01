@@ -49,6 +49,10 @@
           <th>Hours spent</th>
           <td>{{$project->hours_spent->format('%y years %m months %d days %h hours %i minutes %s seconds')}}</td>
         </tr>
+        <tr>
+          <th>Last 30 days</th>
+          <td><a href="{{ route('last30days', ['project_id' => $project->id]) }}">Show</a></td>
+        </tr>
       </table>
       <h3>
         Tickets

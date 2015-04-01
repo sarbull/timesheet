@@ -7,6 +7,11 @@ Route::group(['middleware' => 'auth'], function() {
   Route::resource('projects', 'ProjectsController');
   Route::resource('projects.tickets', 'TicketsController');
 
+  Route::get('last30days/{project_id}', [
+    'as'   => 'last30days', 
+    'uses' => 'DashboardController@last30days'
+  ]);
+
   Route::get('dashboard', [
      'as'    => 'dashboard.index', 
       'uses' => 'DashboardController@index'

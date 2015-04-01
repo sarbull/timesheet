@@ -52,6 +52,10 @@ class Project extends Model {
     return $this->hasMany('App\Ticket');
   }
 
+  public function times() {
+    return $this->hasManyThrough('App\Time', 'App\Ticket');
+  }
+
   public function getHoursSpentAttribute() {
     $duration = new \DateTime('00:00');
     $f        = clone $duration;
