@@ -12,7 +12,7 @@ class DashboardController extends Controller {
 		$times   = $user->times;
 		$today   = new \Datetime("today");
 		$factory = new \CalendR\Calendar;
-		$month = $factory->getMonth(2015, 03);
+		$month = $factory->getMonth($today->format('Y'), $today->format('m'));
 
 		return view('dashboard.index', [
 			'user'    => $user,
